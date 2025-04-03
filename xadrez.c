@@ -1,48 +1,60 @@
 #include <stdio.h>
 
+void moverTorre(int direita)
+{
+	if (direita > 0)
+	{
+		printf("Direita\n");
+		moverTorre(direita - 1);
+	}
+}
+
+void moverBispo(int cimaEsquerda)
+{
+	for (int i = 0; i < 1 && cimaEsquerda > 0; i++)
+	{
+		printf("Cima, ");
+		for (int j = 0; j < 1 && cimaEsquerda > 0; j++)
+		{
+			printf("Direita\n");
+		}
+	}
+	if (cimaEsquerda > 0)
+		moverBispo(cimaEsquerda - 1);
+}
+
+void moverRainha(int esquerda)
+{
+	if (esquerda > 0)
+	{	
+		printf("Esquerda\n");
+		moverRainha(esquerda - 1);
+	}
+}
+
 int main()
 {	
-	const int movTorre = 5; // 5 casas para direita
-	const int movBispo = 5; // 5 casas para cima direita
-	const int movRainha = 8; // 8 casas para esquerda
-	const int movCavaloBai = 2; // 2 casas para baixo
-	const int movCavaloEsq = 1; // 1 casa para esquerda
+	printf("\nMovendo torre:\n");
+	moverTorre(5);
+	printf("\nMovendo bispo:\n");
+	moverBispo(5);
+	printf("\nMovendo rainha:\n");
+	moverRainha(8);
 
-	printf("\nMovimentando a Torre:\n");
-	for (int i = 0; i < movTorre; i++)
-		printf("Direita\n");
-	
-	printf("\nMovimentando o Bispo:\n");
-	int moveuBispo = 0;
-	while (moveuBispo < movBispo)
+	printf("\nMovendo cavalo: \n");
+	int mvCavaloCima = 2;
+	int mvCavaloDireita = 1;
+	for (int i = 0; i < (mvCavaloCima + mvCavaloDireita); i++)
 	{
-		printf("Cima Direita\n");
-		moveuBispo++;
-	}
-	
-	printf("\nMovimentando a Rainha:\n");
-	int moveuRainha = 0;
-	do {
-		printf("Esquerda\n");
-		moveuRainha++;
-	} while(moveuRainha < movRainha);
-	
-	int movCavaloCompleto = 1;
-	int moveuCavaloBai = 0;
-	int moveuCavaloEsq = 0;
-	printf("\nMovendo o Cavalo:\n");
-	for (int i = 0; i < movCavaloCompleto; i++)
-	{
-		while(moveuCavaloBai < movCavaloBai)
+		if (i < mvCavaloCima)
 		{
-			printf("Baixo\n");
-			moveuCavaloBai++;
+			printf("Cima\n");
+		} else {
+			for (int j = 0; j < mvCavaloDireita; j++)
+			{
+				printf("Direita\n");
+			}
 		}
-
-		do {
-			printf("Esquerda\n");
-			moveuCavaloEsq++;
-		} while(moveuCavaloEsq < movCavaloEsq);
 	}
 
 	printf("\n");
